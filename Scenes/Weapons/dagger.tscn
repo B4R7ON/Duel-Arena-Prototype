@@ -1,0 +1,286 @@
+[gd_scene load_steps=16 format=3 uid="uid://y7hjk2sfym6f"]
+
+[ext_resource type="Script" path="res://Scripts/Gameplay/Arma.gd" id="1_wsi5q"]
+[ext_resource type="Texture2D" uid="uid://dsk3fa7pdbpg4" path="res://Assets/Mis sprites/Daga.png" id="2_bf0wr"]
+[ext_resource type="AudioStream" uid="uid://koxxrxl5k5um" path="res://Music & SFX/SFX/Sword Swing.wav" id="3_c1o53"]
+[ext_resource type="AudioStream" uid="uid://dvoiiwu67xf1g" path="res://Music & SFX/SFX/Pick Up Weapon.wav" id="4_aamkp"]
+[ext_resource type="AudioStream" uid="uid://dme2tqm3b6aqi" path="res://Music & SFX/SFX/Drop Weapon.wav" id="5_e6d3f"]
+[ext_resource type="PackedScene" uid="uid://tkxndi438xxn" path="res://Scenes/Particles/broken_particles.tscn" id="6_ggvv4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6khkh"]
+size = Vector2(6.45, 17.0049)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ydgp"]
+size = Vector2(6.5, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m31to"]
+radius = 3.2
+
+[sub_resource type="Animation" id="Animation_5tcmt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon/BladeHitBox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwingNoiseSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Weapon:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Weapon/PickUpHitBox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qbb1c"]
+resource_name = "action_animation_left"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(3, 3, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -40), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon/BladeHitBox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwingNoiseSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gp7mr"]
+resource_name = "action_animation_right"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(3, 3, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -40), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon/BladeHitBox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwingNoiseSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8akps"]
+resource_name = "pick"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_mweew"]
+resource_name = "spawn_animation"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 600)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Weapon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Weapon/PickUpHitBox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1in50"]
+_data = {
+"RESET": SubResource("Animation_5tcmt"),
+"action_animation_left": SubResource("Animation_qbb1c"),
+"action_animation_right": SubResource("Animation_gp7mr"),
+"pick": SubResource("Animation_8akps"),
+"spawn_animation": SubResource("Animation_mweew")
+}
+
+[node name="Dagger" type="Node2D"]
+script = ExtResource("1_wsi5q")
+damage = 1.0
+speed = 3.0
+cooldown = 0.5
+durability = 3
+knockback_strength = 9.0
+
+[node name="Weapon" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapon"]
+position = Vector2(0, -11)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_bf0wr")
+
+[node name="BladeHitBox" type="CollisionShape2D" parent="Weapon"]
+visible = false
+z_index = 1
+position = Vector2(0, -18.503)
+shape = SubResource("RectangleShape2D_6khkh")
+disabled = true
+
+[node name="PickUpHitBox" type="CollisionShape2D" parent="Weapon"]
+visible = false
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_8ydgp")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Range" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, -64)
+shape = SubResource("CircleShape2D_m31to")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1in50")
+}
+
+[node name="SwingNoiseSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_c1o53")
+volume_db = -10.0
+pitch_scale = 2.75
+
+[node name="PickUpNoiseSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_aamkp")
+pitch_scale = 1.5
+
+[node name="DropNoiseSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_e6d3f")
+pitch_scale = 1.5
+
+[node name="BrokenParticles" parent="." instance=ExtResource("6_ggvv4")]
+
+[connection signal="area_entered" from="Weapon" to="." method="_on_weapon_area_entered"]
+[connection signal="body_entered" from="Weapon" to="." method="_on_weapon_body_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

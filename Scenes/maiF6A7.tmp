@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://dyn7m1rmw80qm"]
+
+[ext_resource type="PackedScene" uid="uid://dd1536hfdf4d8" path="res://Scenes/Characters/target_dummy.tscn" id="2_36kga"]
+[ext_resource type="PackedScene" uid="uid://d3203tpo5wvbx" path="res://Scenes/Characters/rival.tscn" id="2_b6ph8"]
+[ext_resource type="PackedScene" uid="uid://bi1diomnsnr41" path="res://Scenes/Weapons/sword.tscn" id="2_tteta"]
+[ext_resource type="PackedScene" uid="uid://y7hjk2sfym6f" path="res://Scenes/Weapons/dagger.tscn" id="3_3lqmg"]
+[ext_resource type="PackedScene" uid="uid://ccqme8n1cyil" path="res://Scenes/Weapons/spear.tscn" id="4_y0a4g"]
+[ext_resource type="PackedScene" uid="uid://bspofufxeh4ai" path="res://Scenes/Characters/Player.tscn" id="9_wd0d3"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("9_wd0d3")]
+position = Vector2(646, 246)
+speed = 250.0
+
+[node name="Rival" parent="." node_paths=PackedStringArray("player", "left_weapon") instance=ExtResource("2_b6ph8")]
+position = Vector2(868, 246)
+player = NodePath("../Player")
+speed = 100.0
+left_weapon = NodePath("../Weapons/Sword")
+
+[node name="TargetDummy" parent="." instance=ExtResource("2_36kga")]
+visible = false
+position = Vector2(55, 48)
+maxHP = 30
+HP = 30
+
+[node name="Weapons" type="Node" parent="."]
+
+[node name="Sword" parent="Weapons" instance=ExtResource("2_tteta")]
+z_index = 1
+position = Vector2(432, 370)
+damage = 3
+speed = 2
+weight = 75
+
+[node name="Spear" parent="Weapons" instance=ExtResource("4_y0a4g")]
+z_index = 1
+position = Vector2(430, 174)
+damage = 5
+speed = 2
+weight = 100
+
+[node name="Dagger" parent="Weapons" instance=ExtResource("3_3lqmg")]
+z_index = 1
+position = Vector2(744, 455)
+damage = 1
+speed = 4
+
+[node name="Sword2" parent="Weapons" instance=ExtResource("2_tteta")]
+z_index = 1
+position = Vector2(952, 380)
+damage = 3
+speed = 2
+weight = 75
+
+[node name="Dagger2" parent="Weapons" instance=ExtResource("3_3lqmg")]
+z_index = 1
+position = Vector2(692, 455)
+damage = 1
+speed = 4
+
+[node name="Spear2" parent="Weapons" instance=ExtResource("4_y0a4g")]
+z_index = 1
+position = Vector2(948, 250)
+damage = 5
+speed = 2
+weight = 100

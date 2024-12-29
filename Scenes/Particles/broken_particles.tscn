@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://tkxndi438xxn"]
+
+[ext_resource type="Texture2D" uid="uid://i57rgs5v82wb" path="res://Assets/Mis sprites/Espada.png" id="1_x6jmq"]
+
+[sub_resource type="Curve" id="Curve_yeln2"]
+min_value = -50.0
+max_value = 50.0
+_data = [Vector2(0.497093, -1.32076), 0.0, 467.321, 0, 0, Vector2(1, 48.4906), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_2shbh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.00377357), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="BrokenParticles" type="CPUParticles2D"]
+z_index = 2
+emitting = false
+amount = 18
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 20.0
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+linear_accel_min = -50.0
+linear_accel_max = -50.0
+linear_accel_curve = SubResource("Curve_yeln2")
+scale_amount_min = 15.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_2shbh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -16.7718)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_x6jmq")
+region_rect = Rect2(704, 223, 608, 1505)

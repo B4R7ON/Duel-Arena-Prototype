@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cs7ol6fvsv3y7"
+path="res://.godot/imported/Sword Impact.wav-c5a504606fbfab5473b7f8e1f0fe7fbf.sample"
+
+[deps]
+
+source_file="res://Music & SFX/SFX/Sword Impact.wav"
+dest_files=["res://.godot/imported/Sword Impact.wav-c5a504606fbfab5473b7f8e1f0fe7fbf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

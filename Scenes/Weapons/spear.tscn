@@ -1,0 +1,211 @@
+[gd_scene load_steps=16 format=3 uid="uid://ccqme8n1cyil"]
+
+[ext_resource type="Script" path="res://Scripts/Gameplay/Arma.gd" id="1_tqrbw"]
+[ext_resource type="Texture2D" uid="uid://6ii7dxxgky6m" path="res://Assets/Mis sprites/Lanza.png" id="2_3fu78"]
+[ext_resource type="Animation" uid="uid://bxony833rpiul" path="res://Animations/Spear/action_animation_left.res" id="3_xfoka"]
+[ext_resource type="Animation" uid="uid://bxly6b6akkcmi" path="res://Animations/Spear/action_animation_right.res" id="4_n54yk"]
+[ext_resource type="AudioStream" uid="uid://koxxrxl5k5um" path="res://Music & SFX/SFX/Sword Swing.wav" id="5_tejsp"]
+[ext_resource type="AudioStream" uid="uid://dvoiiwu67xf1g" path="res://Music & SFX/SFX/Pick Up Weapon.wav" id="6_nervy"]
+[ext_resource type="AudioStream" uid="uid://dme2tqm3b6aqi" path="res://Music & SFX/SFX/Drop Weapon.wav" id="7_ci4i0"]
+[ext_resource type="PackedScene" uid="uid://tkxndi438xxn" path="res://Scenes/Particles/broken_particles.tscn" id="8_56w6h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edhjp"]
+size = Vector2(352, 450)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tboim"]
+size = Vector2(352, 2050)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gbio7"]
+radius = 8.33333
+
+[sub_resource type="Animation" id="Animation_buepy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BladeHitBox:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../SwingNoiseSFX:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PickUpHitBox:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5intu"]
+resource_name = "pick"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gwdg7"]
+resource_name = "spawn_animation"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 600)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.14159]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PickUpHitBox:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8douw"]
+_data = {
+"RESET": SubResource("Animation_buepy"),
+"action_animation_left": ExtResource("3_xfoka"),
+"action_animation_right": ExtResource("4_n54yk"),
+"pick": SubResource("Animation_5intu"),
+"spawn_animation": SubResource("Animation_gwdg7")
+}
+
+[node name="Spear" type="Node2D"]
+script = ExtResource("1_tqrbw")
+damage = 3.0
+speed = 1.5
+cooldown = 1.0
+weight = 60
+durability = 4
+knockback_strength = 7.0
+
+[node name="Weapon" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapon"]
+position = Vector2(0, -9.8)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_3fu78")
+
+[node name="BladeHitBox" type="CollisionShape2D" parent="Weapon"]
+z_index = 1
+position = Vector2(0, -49.8)
+scale = Vector2(0.05, 0.05)
+shape = SubResource("RectangleShape2D_edhjp")
+disabled = true
+
+[node name="PickUpHitBox" type="CollisionShape2D" parent="Weapon"]
+visible = false
+position = Vector2(0, -9.8)
+scale = Vector2(0.05, 0.05)
+shape = SubResource("RectangleShape2D_tboim")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Range" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, -92)
+shape = SubResource("CircleShape2D_gbio7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Weapon")
+libraries = {
+"": SubResource("AnimationLibrary_8douw")
+}
+
+[node name="SwingNoiseSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tejsp")
+pitch_scale = 0.6
+
+[node name="PickUpNoiseSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_nervy")
+pitch_scale = 0.8
+
+[node name="DropNoiseSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_ci4i0")
+pitch_scale = 0.8
+
+[node name="BrokenParticles" parent="." instance=ExtResource("8_56w6h")]
+position = Vector2(0, -25)
+
+[connection signal="area_entered" from="Weapon" to="." method="_on_weapon_area_entered"]
+[connection signal="body_entered" from="Weapon" to="." method="_on_weapon_body_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

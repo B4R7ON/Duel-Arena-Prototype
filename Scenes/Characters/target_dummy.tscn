@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dd1536hfdf4d8"]
+
+[ext_resource type="Texture2D" uid="uid://bot82x08fgqh" path="res://icon.svg" id="1_41irr"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/target_dummy.gd" id="1_koleo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2a120"]
+size = Vector2(64, 64)
+
+[node name="TargetDummy" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_koleo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+z_index = 1
+shape = SubResource("RectangleShape2D_2a120")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_41irr")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

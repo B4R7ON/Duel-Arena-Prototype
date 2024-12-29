@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyn7m1rmw80qm"]
+
+[ext_resource type="PackedScene" uid="uid://d3203tpo5wvbx" path="res://Scenes/Characters/rival.tscn" id="2_b6ph8"]
+[ext_resource type="PackedScene" uid="uid://bi1diomnsnr41" path="res://Scenes/Weapons/sword.tscn" id="2_tteta"]
+[ext_resource type="PackedScene" uid="uid://bspofufxeh4ai" path="res://Scenes/Characters/Player.tscn" id="9_wd0d3"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("9_wd0d3")]
+position = Vector2(891, 270)
+collision_mask = 3
+
+[node name="Rival" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_b6ph8")]
+position = Vector2(318, 260)
+player = NodePath("../Player")
+
+[node name="Weapons" type="Node" parent="."]
+
+[node name="Sword" parent="Weapons" instance=ExtResource("2_tteta")]
+position = Vector2(956, 103)
+knockback_strength = 10.0
+
+[node name="Sword2" parent="Weapons" instance=ExtResource("2_tteta")]
+position = Vector2(100, 176)
+knockback_strength = 10.0
