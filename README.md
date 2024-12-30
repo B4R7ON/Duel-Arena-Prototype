@@ -1,7 +1,7 @@
 ESPAÑOL
 
-Este es mi primer proyecto que hago en solitario usando Godot Engine, es un prototipo de una idea mas grande.
-Para jugar ir a la carpeta GAME y descargar o visita la pagina de itch: https://b4r7on.itch.io/duel-arena
+Este es mi primer proyecto que hago en solitario usando Godot Engine, es un prototipo de una idea más grande.
+Para jugar ir a la carpeta GAME y descargar o visita la página de itch: https://b4r7on.itch.io/duel-arena
 
 ENGLISH
 
